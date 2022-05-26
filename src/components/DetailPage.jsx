@@ -6,8 +6,8 @@ import {useLocation} from "react-router-dom"
 
 const DetailPage=()=>{
     const location = useLocation();
-  const state = location.state;
-    console.log("state", state)
+  const state = location.state + 1;
+
     const { data, error, isLoading } =useGetProductByIdQuery(state.toString())
    
     return(<>
