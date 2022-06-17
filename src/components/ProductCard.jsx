@@ -1,17 +1,19 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { selectData} from '../features/dataSlice';
+// import { useSelector } from "react-redux";
+// import { dataSlice, selectData} from '../features/dataSlice';
 import {Card,Grid, CardContent,CardMedia,Typography,Box}from '@mui/material';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import TextTruncate from "react-text-truncate";
 import {Link} from "react-router-dom"
+import { useGetProductsQuery } from "../services/product";
 
 const ProductCard=()=>{
-    const data = useSelector(selectData);
-    
+  // console.log( useGetProductsQuery())
+  const { data, error, isLoading, isSuccess }= useGetProductsQuery()
+  console.log("error" , error)
     return( 
     <Grid container spacing={2} columnSpacing={2}>
-    {data.length? (data.map((el, id) => {
+    {isLoading ? (<>Loading ... </>):((data.map((el, id) => {
         return (
           <Grid item xs={12} md={3} key={id}>
             <Box>
@@ -59,7 +61,7 @@ const ProductCard=()=>{
             </Box>
           </Grid>
         );
-      })):(<>Loading..</>)}
+      })))}
     </Grid>
    )
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useGetProductByIdQuery } from '../services/product';
-import {Card,Grid, CardContent,CardMedia,Typography,Box}from '@mui/material';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import {Card, CardContent,CardMedia,Typography,Box}from '@mui/material';
+import { CardActionArea, CardActions } from '@mui/material';
 import {useLocation} from "react-router-dom"
 
 const DetailPage=()=>{
