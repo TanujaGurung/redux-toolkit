@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import dataReducer from './features/dataSlice';
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { productApi } from './services/product'
 
