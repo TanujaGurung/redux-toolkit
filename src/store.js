@@ -5,7 +5,6 @@ import { productApi } from './services/product'
 
 export const store = configureStore({
   reducer: {
-    data: dataReducer,
     [productApi.reducerPath]: productApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
