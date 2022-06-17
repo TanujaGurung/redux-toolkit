@@ -3,13 +3,35 @@ import {Card,Grid, CardContent,CardMedia,Typography,Box}from '@mui/material';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import TextTruncate from "react-text-truncate";
 import {Link} from "react-router-dom"
-import { useGetProductsQuery } from "../services/product";
+import { useAddProductMutation, useGetProductsQuery } from "../services/product";
 
 const ProductCard=()=>{
-  const { data, error, isLoading }= useGetProductsQuery()
-  console.log("error" , error)
-    return( 
-    <Grid container spacing={2} columnSpacing={2}>
+  const { data, isLoading }= useGetProductsQuery()
+    const [ addProduct ] = useAddProductMutation() 
+
+  const handlePost = async()=>{
+    try
+    {
+      const response = await addProduct({
+      title: 'test product',
+      price: 13.5,
+      description: 'lorem ipsum set',
+      image: 'https://th.bing.com/th/id/OIP.Sx-9v6F1m1Wx5SQKfP8OPAHaG0?w=222&h=204&c=7&r=0&o=5&dpr=1.5&pid=1.7',
+      category: 'electronic'
+     })
+     alert("successfully added fake product with id " + response.data.id)
+    }
+    catch(err){
+   console.log(err)
+    }
+    
+  }
+    return( <>
+    <Grid container justifyContent="center">
+      <Grid item><Button variant="outlined" onClick = {handlePost}>Add Fake Product</Button></Grid>
+    </Grid>
+
+    <Grid container rowSpacing={4} columnSpacing={4} mt={2}>
     {isLoading ? (<>Loading ... </>):((data.map((el, id) => {
         return (
           <Grid item xs={12} md={3} key={id}>
@@ -61,6 +83,7 @@ const ProductCard=()=>{
         );
       })))}
     </Grid>
+    </>
    )
 }
 export default ProductCard;
