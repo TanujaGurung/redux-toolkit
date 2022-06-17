@@ -1,6 +1,4 @@
 import React from "react";
-// import { useSelector } from "react-redux";
-// import { dataSlice, selectData} from '../features/dataSlice';
 import {Card,Grid, CardContent,CardMedia,Typography,Box}from '@mui/material';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import TextTruncate from "react-text-truncate";
@@ -8,8 +6,7 @@ import {Link} from "react-router-dom"
 import { useGetProductsQuery } from "../services/product";
 
 const ProductCard=()=>{
-  // console.log( useGetProductsQuery())
-  const { data, error, isLoading, isSuccess }= useGetProductsQuery()
+  const { data, error, isLoading }= useGetProductsQuery()
   console.log("error" , error)
     return( 
     <Grid container spacing={2} columnSpacing={2}>
@@ -33,6 +30,7 @@ const ProductCard=()=>{
           line={1}
           truncateText="…"
           text= {el.title}
+          // eslint-disable-next-line jsx-a11y/anchor-is-valid
           textTruncateChild={<a href="#" style={{fontSize:'15px', textDecoration:'none'}}>view more</a>}
         />
           

@@ -8,7 +8,7 @@ const DetailPage=()=>{
     const location = useLocation();
   const state = location.state + 1;
 
-    const { data, error, isLoading } =useGetProductByIdQuery(state.toString())
+    const { data,  isLoading } =useGetProductByIdQuery(state.toString())
    
     return(<>
     This is Detail Page
